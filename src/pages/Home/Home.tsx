@@ -1,53 +1,96 @@
-import { useState } from "react";
 import "./Home.css";
+import Card from "../../components/Cards/Cards";
+import Filter from "../../components/Filter/Filter";
+import Pagination from "../../components/Pagination/Pagination";
+import { useEffect, useState } from "react";
+import { defaultCharactersURLAPI } from "../../core/Constants";
+import { ApiResponse } from "../../core/Interface";
+import LoadingSpinner from "../../layout/LoadingSpinner/LoadingSpinner";
 
 const Home = () => {
-  // Estados para o filtro de status e busca
-  const [status, setStatus] = useState<string>(""); // Estado para o status
-  const [searchQuery, setSearchQuery] = useState<string>(""); // Estado para o campo de busca
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const [data, setData] = useState<ApiResponse | null>();
+  const [status, setStatus] = useState<string | null>(null);
+  const [query, setQuery] = useState<string | null>(null);
+  const [loadingData, setLoadingData] = useState<boolean>(false);
+  const [error, setErro] = useState<boolean>(false);
 
-  // Função chamada ao clicar no botão de busca
-  const handleSearch = () => {
-    console.log("Status selecionado:", status);
-    console.log("Texto de busca:", searchQuery);
-
-    // Aqui você pode adicionar lógica para filtrar os personagens ou fazer a chamada à API
+  const handleFilter = (filter: { status?: string; query?: string }) => {
+    setStatus(filter.status ? filter.status : null);
+    setQuery(filter.query ? filter.query : null);
+    setPageNumber(1);
   };
+
+  const fetchData = async (pageNumber: number = 1, status: string | null = null, query: string | null = null) => {
+    setLoadingData(true);
+    setErro(false);
+    try {
+      if (query || status) {
+        setPageNumber(1);
+      }
+      const response = await fetch(`${defaultCharactersURLAPI}/?page=${pageNumber}${query ? `&name=${query}` : ""}${status ? `&status=${status}` : ""}`);
+
+      if (!response.ok) {
+        throw new Error("Erro ao buscar dados");
+      }
+
+      const result = await response.json();
+
+      if (result.error) {
+        throw new Error(result.error);
+      }
+      setData(result);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (err) {
+      setData(null);
+    } finally {
+      setLoadingData(false);
+    }
+  };
+  useEffect(() => {
+    fetchData(pageNumber, status, query);
+  }, [pageNumber, status, query]);
+
   return (
     <>
-      <div className="card mt-50">
+      <div className="card mt-20">
         <div className="card-header">
-          <div className="row">
-            <div className="col-md-5">
-              <select className="form-select" value={status} onChange={e => setStatus(e.target.value)}>
-                <option selected value="">
-                  Status
-                </option>
-                <option value="alive">Vivo</option>
-                <option value="dead">Morto</option>
-                <option value="unknown">Desconhecido</option>
-              </select>
-            </div>
-            <div className="col-md-5">
-              <input
-                className="form-control me-2 search-input"
-                type="search"
-                placeholder="Buscar um personagem"
-                aria-label="Buscar"
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-              />
-            </div>
-            <div className="col-md-2 ">
-              <div className="d-grid gap-2">
-                <button className="btn btn-success btn-block" type="button" onClick={handleSearch}>
-                  Buscar
-                </button>
-              </div>
-            </div>
-          </div>
+          <Filter onFilter={handleFilter} />
         </div>
-        <div className="card-body"></div>
+
+        <div className="card-body">
+          {loadingData && <LoadingSpinner />}
+          {!loadingData && !error && (
+            <>
+              {data?.results && data.results.length > 0 ? (
+                data.results.map((_, index) =>
+                  index % 4 === 0 ? (
+                    <div className="row" key={index}>
+                      {data.results.slice(index, index + 4).map(character => (
+                        <Card
+                          id={character.id}
+                          key={character.id}
+                          imageURL={character.image}
+                          name={character.name}
+                          gender={character.gender}
+                          status={character.status}
+                          origin={character.origin.name}
+                          locationName={character.location.name}
+                        />
+                      ))}
+                    </div>
+                  ) : null,
+                )
+              ) : (
+                <div className="text-muted text-center">Nenhum personagem encontrado.</div>
+              )}
+            </>
+          )}
+        </div>
+
+        <div className="card-footer text-center">
+          <Pagination pageNumber={pageNumber} totalPages={data?.info.pages || 1} totalItens={data?.info.count || 0} setPageNumber={setPageNumber} />
+        </div>
       </div>
     </>
   );

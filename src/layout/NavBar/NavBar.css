@@ -4,3 +4,8 @@
   font-weight: bold;
 }
 
+#navbarNav>ul>li>a.active {
+  background-color: #198754;
+  border-radius: 5px;
+  color: white;
+}
