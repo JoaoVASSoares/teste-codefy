@@ -111,7 +111,8 @@
     "All Status": "All Status",
     "Alive": "Alive",
     "Dead": "Dead",
-    "Unknown": "Unknown"
+    "Unknown": "Unknown",
+    "unknown": "Unknown"
   },
   "system": { 
     "Characters - Rick & Morty": "Characters - Rick & Morty",
