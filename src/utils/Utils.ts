@@ -1,6 +1,8 @@
-import { StatusCharacter } from "./Enums";
+import { format, parse } from "date-fns";
+import { EStatusCharacter } from "../core/Enums";
+import { ptBR } from "date-fns/locale";
 
-export const getBadgeClass = (status: keyof typeof StatusCharacter) => {
+export const getBadgeClass = (status: keyof typeof EStatusCharacter) => {
   switch (status) {
     case "Alive":
       return "bg-success";
@@ -13,7 +15,7 @@ export const getBadgeClass = (status: keyof typeof StatusCharacter) => {
   }
 };
 
-const translations: Record<string, string> = {
+const originTranslations: Record<string, string> = {
   unknown: "Desconhecido",
   "Earth (Replacement Dimension)": "Terra (Dimensão de Substituição)",
   "Earth (Evil Rick's Target Dimension)": "Terra (Dimensão Alvo do Mal Rick)",
@@ -75,11 +77,16 @@ const translations: Record<string, string> = {
 };
 
 export const getOrigin = (origin: string): string => {
-  for (const [key, value] of Object.entries(translations)) {
+  for (const [key, value] of Object.entries(originTranslations)) {
     if (origin.includes(key)) {
       return origin.replace(key, value);
     }
   }
 
   return origin;
+};
+
+export const episodeFormatDate = (date: string): string => {
+  const parsedDate = parse(date, "MMMM d, yyyy", new Date());
+  return format(parsedDate, "d 'de' MMMM, yyyy", { locale: ptBR });
 };

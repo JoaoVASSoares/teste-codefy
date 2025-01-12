@@ -1,11 +1,11 @@
-import { useParams } from "react-router-dom";
 import "./Character.css";
+import { useParams } from "react-router-dom";
 import { defaultCharactersURLAPI } from "../../core/Constants";
 import { useEffect, useState } from "react";
 import { ICharacter } from "../../core/Interface";
 import LoadingSpinner from "../../layout/LoadingSpinner/LoadingSpinner";
-import { getBadgeClass, getOrigin } from "../../core/ExtraFunctions";
-import { GenderCharacter, StatusCharacter } from "../../core/Enums";
+import { getBadgeClass, getOrigin } from "../../utils/Utils";
+import { EGenderCharacter, EStatusCharacter } from "../../core/Enums";
 
 const Character = () => {
   const [character, setCharacter] = useState<ICharacter>();
@@ -23,16 +23,21 @@ const Character = () => {
       }
 
       const result = await response.json();
-      setCharacter(result);
+
       if (result.error) {
         throw new Error(result.error);
       }
+
+      setCharacter(result);
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
-      console.log(err);
+      setCharacter(undefined);
     } finally {
       setLoadingData(false);
     }
   };
+
   useEffect(() => {
     if (id) {
       fetchData(id);
@@ -53,7 +58,7 @@ const Character = () => {
               <div className="col-md-12">
                 <div className="position-relative">
                   <span className={`badge position-absolute top-0 start-0 m-2 p-3 ${character?.status ? getBadgeClass(character!.status) : ""}`}>
-                    <span className="fs-6">{character?.status ? StatusCharacter[character.status] : ""}</span>
+                    <span className="fs-6">{character?.status ? EStatusCharacter[character.status] : ""}</span>
                   </span>
                   <img src={character?.image} className="img-fluid rounded-start" width={"540px"} height={"auto"} alt="..." />
                 </div>
@@ -65,14 +70,14 @@ const Character = () => {
                   <h5 className="card-title">{character?.name}</h5>
                   <p className="card-text">
                     <div>
-                      <span className="text-bold">Gênero: </span>
-                      {character?.gender ? GenderCharacter[character.gender] : ""}
+                      <span className="fw-bold">Gênero: </span>
+                      {character?.gender ? EGenderCharacter[character.gender] : ""}
                     </div>
                     <div>
-                      <span className="text-bold">Apariçoẽs:</span> {character?.episode.length} episódios
+                      <span className="fw-bold">Apariçoẽs:</span> {character?.episode.length} episódios
                     </div>
                     <div>
-                      <span className="text-bold">Ultma localização:</span> {character?.location ? getOrigin(character?.location.name) : ""}
+                      <span className="fw-bold">Ultma localização:</span> {character?.location ? getOrigin(character?.location.name) : ""}
                     </div>
                   </p>
                 </div>

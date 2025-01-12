@@ -1,13 +1,14 @@
-import "./Home.css";
+import "./Characters.css";
 import Card from "../../components/Cards/Cards";
-import Filter from "../../components/Filter/Filter";
+import Filter from "../../components/Filters/Filter";
 import Pagination from "../../components/Pagination/Pagination";
 import { useEffect, useState } from "react";
 import { defaultCharactersURLAPI } from "../../core/Constants";
 import { ApiResponse } from "../../core/Interface";
 import LoadingSpinner from "../../layout/LoadingSpinner/LoadingSpinner";
+import { TFatchCharacters, TFilter } from "../../core/Types";
 
-const Home = () => {
+const Characters = () => {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [data, setData] = useState<ApiResponse | null>();
   const [status, setStatus] = useState<string | null>(null);
@@ -15,19 +16,21 @@ const Home = () => {
   const [loadingData, setLoadingData] = useState<boolean>(false);
   const [error, setErro] = useState<boolean>(false);
 
-  const handleFilter = (filter: { status?: string; query?: string }) => {
+  const handleFilter = (filter: TFilter) => {
     setStatus(filter.status ? filter.status : null);
     setQuery(filter.query ? filter.query : null);
     setPageNumber(1);
   };
 
-  const fetchData = async (pageNumber: number = 1, status: string | null = null, query: string | null = null) => {
+  const fetchData = async ({ pageNumber = 1, status = null, query = null }: TFatchCharacters) => {
     setLoadingData(true);
     setErro(false);
+
     try {
       if (query || status) {
         setPageNumber(1);
       }
+
       const response = await fetch(`${defaultCharactersURLAPI}/?page=${pageNumber}${query ? `&name=${query}` : ""}${status ? `&status=${status}` : ""}`);
 
       if (!response.ok) {
@@ -39,7 +42,9 @@ const Home = () => {
       if (result.error) {
         throw new Error(result.error);
       }
+
       setData(result);
+
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setData(null);
@@ -47,8 +52,9 @@ const Home = () => {
       setLoadingData(false);
     }
   };
+
   useEffect(() => {
-    fetchData(pageNumber, status, query);
+    fetchData({ pageNumber, status, query });
   }, [pageNumber, status, query]);
 
   return (
@@ -96,4 +102,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Characters;

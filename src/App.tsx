@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import NavBar from "./layout/NavBar/NavBar";
-import Home from "./pages/Home/Home";
 import Character from "./pages/Character/Character";
-import FPageTitleUpdater from "./layout/FPageTitleUpdater";
+import FPageTitleUpdater from "./layout/PageTitileUpdater.tsx/FPageTitleUpdater";
 import Episodes from "./pages/Episodes/Episodes";
+import Characters from "./pages/Characters/Characters";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <NavBar />
       <div className="container">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Characters />} />
           <Route path="/character/:id" element={<Character />} />
           <Route path="/episodes" element={<Episodes />} />
           <Route path="*" element={<Navigate to="/" replace />} />

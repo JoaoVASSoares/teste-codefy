@@ -1,3 +1,5 @@
+import { TGender, TStatus } from "./Types";
+
 interface Origin {
   name: string;
   url: string;
@@ -11,10 +13,10 @@ interface Location {
 export interface ICharacter {
   id: number;
   name: string;
-  status: "Alive" | "Dead" | "unknown";
+  status: TStatus;
   species: string;
   type: string;
-  gender: "Male" | "Female" | "Genderless" | "unknown";
+  gender: TGender;
   origin: Origin;
   location: Location;
   image: string;
@@ -33,4 +35,14 @@ export interface Info {
 export interface ApiResponse {
   info: Info;
   results: ICharacter[];
+}
+
+export interface IEpisode {
+  id: number;
+  name: string;
+  air_date: string;
+  episode: string;
+  characters: string[];
+  url: string;
+  created: string;
 }

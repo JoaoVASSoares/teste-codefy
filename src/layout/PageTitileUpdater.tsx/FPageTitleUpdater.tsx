@@ -13,6 +13,9 @@ const FPageTitleUpdater = () => {
       if (/^\/\d+$/.test(pathname)) {
         return "Detalhes do Personagem - Rick & Morty";
       }
+      if (pathname === "/episodes") {
+        return "Epsódios - Rick & Morty";
+      }
       return "Rick & Morty - WiKi";
     };
 

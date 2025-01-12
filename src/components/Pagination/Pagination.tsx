@@ -10,7 +10,7 @@ type Props = {
   setPageNumber: (page: number) => void;
 };
 
-const Pagination = (props: Props) => {
+const Pagination = ({ pageNumber, totalItens, totalPages, setPageNumber }: Props) => {
   useEffect(() => {
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     tooltipTriggerList.forEach(tooltipTriggerEl => {
@@ -27,7 +27,7 @@ const Pagination = (props: Props) => {
           data-bs-custom-class="custom-tooltip"
           data-bs-title="Número total de páginas e o total de personagens encontrado"
         />
-        Página {props.pageNumber} de {props.totalPages} - <span className="text-bold">Total:</span> {props.totalItens}
+        Página {pageNumber} de {totalPages} - <span className="fw-bold">Total:</span> {totalItens}
       </div>
       <ReactPaginate
         className="pagination mt-2"
@@ -42,11 +42,11 @@ const Pagination = (props: Props) => {
         pageRangeDisplayed={2}
         marginPagesDisplayed={1}
         onPageChange={data => {
-          props.setPageNumber(data.selected + 1);
+          setPageNumber(data.selected + 1);
         }}
-        pageCount={props.totalPages}
+        pageCount={totalPages}
         activeClassName="active"
-        forcePage={props.pageNumber - 1}
+        forcePage={pageNumber - 1}
       />
     </div>
   );
