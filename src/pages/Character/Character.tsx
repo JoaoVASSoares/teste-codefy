@@ -4,8 +4,8 @@ import { defaultCharactersURLAPI } from "../../core/Constants";
 import { useEffect, useState } from "react";
 import { ICharacter } from "../../core/Interface";
 import LoadingSpinner from "../../layout/LoadingSpinner/LoadingSpinner";
-import { getBadgeClass, getOrigin } from "../../utils/Utils";
-import { EGenderCharacter, EStatusCharacter } from "../../core/Enums";
+import { getBadgeClass } from "../../utils/Utils";
+import Tranlation from "../../components/Translation/Translation";
 
 const Character = () => {
   const [character, setCharacter] = useState<ICharacter>();
@@ -58,7 +58,7 @@ const Character = () => {
               <div className="col-md-12">
                 <div className="position-relative">
                   <span className={`badge position-absolute top-0 start-0 m-2 p-3 ${character?.status ? getBadgeClass(character!.status) : ""}`}>
-                    <span className="fs-6">{character?.status ? EStatusCharacter[character.status] : ""}</span>
+                    <span className="fs-6">{character?.status ? <Tranlation type="status" origin={character.status} /> : ""}</span>
                   </span>
                   <img src={character?.image} className="img-fluid rounded-start" width={"540px"} height={"auto"} alt="..." />
                 </div>
@@ -71,13 +71,13 @@ const Character = () => {
                   <p className="card-text">
                     <div>
                       <span className="fw-bold">Gênero: </span>
-                      {character?.gender ? EGenderCharacter[character.gender] : ""}
+                      {character?.gender ? <Tranlation type="genders" origin={character?.gender} /> : ""}
                     </div>
                     <div>
                       <span className="fw-bold">Apariçoẽs:</span> {character?.episode.length} episódios
                     </div>
                     <div>
-                      <span className="fw-bold">Ultma localização:</span> {character?.location ? getOrigin(character?.location.name) : ""}
+                      <span className="fw-bold">Ultma localização:</span> {character?.location ? <Tranlation type="origins" origin={character?.location.name} /> : ""}
                     </div>
                   </p>
                 </div>

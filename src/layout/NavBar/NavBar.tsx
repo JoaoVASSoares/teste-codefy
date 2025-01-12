@@ -1,7 +1,14 @@
+import Tranlation from "../../components/Translation/Translation";
+import FlagSwitch from "../FlagSwitch/FlagSwitch";
 import "./NavBar.css";
 import { Link, NavLink } from "react-router-dom";
 
-const NavBar = () => {
+type Props = {
+  isChecked: boolean;
+  setIsChecked: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const NavBar = ({ isChecked, setIsChecked }: Props) => {
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
@@ -26,15 +33,17 @@ const NavBar = () => {
           <ul className="navbar-nav ms-auto gap-2">
             <li className="nav-item">
               <NavLink className="nav-link" aria-current="page" to="/">
-                Personagens
+                <Tranlation type="system" origin="Characters" />
               </NavLink>
             </li>
             <li className="nav-item ml-2">
               <NavLink className="nav-link" aria-current="page" to="/episodes">
-                Episódios
+                <Tranlation type="system" origin="Episodes" />
               </NavLink>
             </li>
           </ul>
+
+          <FlagSwitch isChecked={isChecked} setIsChecked={setIsChecked} />
         </div>
       </div>
     </nav>

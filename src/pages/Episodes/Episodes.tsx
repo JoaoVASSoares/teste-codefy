@@ -6,8 +6,13 @@ import { ICharacter, IEpisode } from "../../core/Interface";
 import LoadingSpinner from "../../layout/LoadingSpinner/LoadingSpinner";
 import Card from "../../components/Cards/Cards";
 import { episodeFormatDate } from "../../utils/Utils";
+import Translation from "../../components/Translation/Translation";
 
-const Episodes = () => {
+type Props = {
+  isChecked: boolean;
+};
+
+const Episodes = ({ isChecked }: Props) => {
   const [results, setResults] = useState<IEpisode | null>(null);
   const [characters, setCharacters] = useState<ICharacter[]>([]);
   const [id, setID] = useState<number>(1);
@@ -70,9 +75,9 @@ const Episodes = () => {
     <div className="card mt-20">
       <div className="card-header">
         <h1 className="text-center mb-3">
-          Nome do episódio: <span className="text-success">{results?.name}</span>
+          Nome do episódio: <span className="text-success">{results?.name && <Translation type="title" origin={results.name} />}</span>
         </h1>
-        <h5 className="text-center">Data de transmissão: {results?.air_date ? episodeFormatDate(results?.air_date) : ""}</h5>
+        <h5 className="text-center">Data de transmissão: {results?.air_date ? (isChecked ? results.air_date : episodeFormatDate(results?.air_date)) : ""}</h5>
       </div>
       <div className="select-div">
         <SelectFilter name="Episódio" total={51} changeID={setID} />
