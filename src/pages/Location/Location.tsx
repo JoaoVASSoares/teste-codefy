@@ -1,24 +1,18 @@
-import "./Episodes.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import SelectFilter from "../../components/Filters/SelectFilter";
-import { defaultEpisodesURLAPI } from "../../core/Constants";
-import { ICharacter, IEpisode } from "../../core/Interface";
+import Translation from "../../components/Translation/Translation";
+import { ICharacter, ILocation } from "../../core/Interface";
+import { defaultLocationsURLAPI } from "../../core/Constants";
 import LoadingSpinner from "../../layout/LoadingSpinner/LoadingSpinner";
 import Card from "../../components/Cards/Cards";
-import { episodeFormatDate } from "../../utils/Utils";
-import Translation from "../../components/Translation/Translation";
-import { useTranslation } from "react-i18next";
 
-type Props = {
-  isChecked: boolean;
-};
-
-const Episodes = ({ isChecked }: Props) => {
-  const [results, setResults] = useState<IEpisode | null>(null);
-  const [characters, setCharacters] = useState<ICharacter[]>([]);
+const Location = () => {
   const [id, setID] = useState<number>(1);
   const [loadingData, setLoadingData] = useState<boolean>(false);
   const [error, setErro] = useState<boolean>(false);
+  const [results, setResults] = useState<ILocation | null>(null);
+  const [characters, setCharacters] = useState<ICharacter[]>([]);
 
   const { t } = useTranslation();
 
@@ -27,7 +21,7 @@ const Episodes = ({ isChecked }: Props) => {
     setErro(false);
 
     try {
-      const response = await fetch(`${defaultEpisodesURLAPI}/${id}`);
+      const response = await fetch(`${defaultLocationsURLAPI}/${id}`);
 
       if (!response.ok) {
         throw new Error("Erro ao buscar dados");
@@ -40,9 +34,9 @@ const Episodes = ({ isChecked }: Props) => {
       }
 
       setResults(result);
-
+      console.log(result);
       const characterData = await Promise.all(
-        result.characters.map(async (url: string) => {
+        result.residents.map(async (url: string) => {
           const response = await fetch(url);
 
           if (!response.ok) {
@@ -78,18 +72,24 @@ const Episodes = ({ isChecked }: Props) => {
     <div className="card mt-20">
       <div className="card-header">
         <h1 className="text-center mb-3">
-          {<Translation type="system" origin={'Episode name'} />}: <span className="text-success">{results?.name && <Translation type="title" origin={results.name} />}</span>
+          <Translation type="system" origin="Location" />: <span className="text-success">{results?.name ? <Translation type="origins" origin={results.name} /> : ""}</span>
         </h1>
-        <h5 className="text-center">Data de transmissão: {results?.air_date ? (isChecked ? results.air_date : episodeFormatDate(results?.air_date)) : ""}</h5>
+        <h5 className="text-center">
+          <Translation type="system" origin="Dimension" />:{" "}
+          <span className="text-success">{results?.dimension ? <Translation type="dimension" origin={results.dimension} /> : "-"}</span>
+        </h5>
+        <h6 className="text-center">
+          <Translation type="system" origin="Type" />: <span className="text-success">{results?.type ? <Translation type="type" origin={results.type} /> : "-"}</span>
+        </h6>
       </div>
       <div className="select-div">
-        <SelectFilter listTitle={t("system.Choose an episode")} name={t("system.Episodes")} total={51} changeID={setID} />
+        <SelectFilter listTitle={t("system.Choose a location")} name={t("system.Locations")} total={126} changeID={setID} />
       </div>
       <div className="card-body">
         {loadingData && <LoadingSpinner />}
         {!loadingData && !error && (
           <>
-            {characters ? (
+            {characters && characters.length > 0 ? (
               characters.map((_, index) =>
                 index % 4 === 0 ? (
                   <div className="row" key={index}>
@@ -118,4 +118,4 @@ const Episodes = ({ isChecked }: Props) => {
   );
 };
 
-export default Episodes;
+export default Location;

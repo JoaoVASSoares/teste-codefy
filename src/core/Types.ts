@@ -12,4 +12,4 @@ export type TFatchCharacters = {
   query: string | null;
 };
 
-export type TTranslationType = "origins" | "genders" | "status" | "system" | "title";
+export type TTranslationType = "origins" | "genders" | "status" | "system" | "title" | "pagination" | "dimension" | "type";

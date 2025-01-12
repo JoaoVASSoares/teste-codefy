@@ -70,14 +70,25 @@ const Character = () => {
                   <h5 className="card-title">{character?.name}</h5>
                   <p className="card-text">
                     <div>
-                      <span className="fw-bold">Gênero: </span>
+                      <span className="fw-bold">
+                        <Tranlation type="genders" origin={"Gender"} />
+                        :&nbsp;
+                      </span>
                       {character?.gender ? <Tranlation type="genders" origin={character?.gender} /> : ""}
                     </div>
                     <div>
-                      <span className="fw-bold">Apariçoẽs:</span> {character?.episode.length} episódios
+                      <span className="fw-bold">
+                        <Tranlation type="system" origin={"Appearances"} />
+                        :&nbsp;
+                      </span>
+                      {character?.episode.length} <Tranlation type="system" origin={"episodes"} />
                     </div>
                     <div>
-                      <span className="fw-bold">Ultma localização:</span> {character?.location ? <Tranlation type="origins" origin={character?.location.name} /> : ""}
+                      <span className="fw-bold">
+                        <Tranlation type="system" origin={"Last location"} />
+                        :&nbsp;
+                      </span>
+                      {character?.location ? <Tranlation type="origins" origin={character?.location.name} /> : ""}
                     </div>
                   </p>
                 </div>
