@@ -1,50 +1,84 @@
-# React + TypeScript + Vite
+# Teste codefy
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Autor
+Para que não me conhece me chamo João Vitor, tenho 24 anos e amo desenvolver. Alem da tecnologia tenho como hobbies são passar tempo com minha esposa, jogar jogos eletronicos alem de estar com o meu cachorrinho. Sou uma pessoa que gosta muito de aprender, estudar e compartilhar conhecimentos.
 
-Currently, two official plugins are available:
+Este é um projeto frontend desenvolvido em React com TypeScript, utilizando o Vite como ferramenta de build. A aplicação consome a API [Rick and Morty API](https://rickandmortyapi.com/) para exibir informações sobre personagens, episódios e localizações do universo Rick & Morty.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔗 Link da Aplicação Hospedada
 
-## Expanding the ESLint configuration
+Acesse a aplicação online: [https://teste-codefy.onrender.com](https://teste-codefy.onrender.com)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🚀 Tecnologias Utilizadas
 
-- Configure the top-level `parserOptions` property like this:
+- **React** com **TypeScript**
+- **Vite** como ferramenta de build
+- **i18next** para tradução
+- **Bootstrap** para estilização
+- **React Router** para navegação
+- **Docker** para containerização
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+----
+
+## 🛠️ Como Executar o Projeto
+
+### Clonar o Repositório
+
+```bash
+git clone https://github.com/JoaoVASSoares/teste-codefy.git
+cd teste-codefy
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### Rodar em Desenvolvimento
+1. Instale as dependências:
+```bash
+npm install
 ```
+2. Execute o servidor de desenvolvimento:
+```bash
+ npm run dev
+```
+3. Acesse a aplicação no navegador em: http://localhost:5173
+----
+
+## 🐳 Executar com Docker
+1. Requisitos
+Certifique-se de ter o Docker instalado na sua máquina.
+2. Construir a Imagem
+```bash
+docker build -t teste-codefy .
+```
+3. Rodar o Contêiner
+```bash
+docker run -d -p 8080:80 teste-codefy
+```
+4. Acesse a aplicação no navegador em: http://localhost:8080
+---
+
+## 🌐 Tradução com i18next
+A aplicação suporta múltiplos idiomas utilizando o i18next. Atualmente, os idiomas disponíveis são:
+
+- Inglês (en)
+- Português (pt)
+
+A linguagem padrão é o português, mas você pode alternar entre os idiomas diretamente na interface.
+
+---
+## 🤝 Contribuindo
+- Faça um fork do projeto.
+- Crie uma branch para sua feature: `git checkout -b minha-feature`.
+- Commit suas alterações: `git commit -m 'Adicionei minha feature'`.
+- Envie sua branch: `git push origin minha-feature`.
+- Abra um pull request.
+---
+
+## 📝 Licença
+Este projeto está sob a licença MIT. Para mais informações, consulte o arquivo LICENSE.
+
+--- 
+
+## 📧 Contato
+**Autor**: João Vitor Almeida Souza Soares <br>
+**GitHub**: JoaoVASSoares <br>
+**Email**: joaovitoralmeidas@hotmail.com <br>
+
