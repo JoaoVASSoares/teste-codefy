@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { GenderCharacter, StatusCharacter } from "../../core/Enums";
 import "./Cards.css";
+import { getBadgeClass, getOrigin } from "../../core/ExtraFunctions";
 
 type Props = {
   id: number;
@@ -13,33 +14,9 @@ type Props = {
 };
 
 const Card = (props: Props) => {
-  const getBadgeClass = (status: keyof typeof StatusCharacter) => {
-    switch (status) {
-      case "Alive":
-        return "bg-success";
-      case "Dead":
-        return "bg-danger";
-      case "unknown":
-        return "bg-secondary";
-      default:
-        return "bg-secondary";
-    }
-  };
-
-  const getOrigin = (origin: string) => {
-    switch (origin) {
-      case "unknown":
-        return "Desconhecido";
-      case "Earth (Replacement Dimension)":
-        return "Terra (Dimensão de Substituição)";
-      default:
-        return origin;
-    }
-  };
-
   return (
     <div className="col-md-3">
-      <Link to={`/${props.id}`} className="text-decoration-none">
+      <Link to={`/character/${props.id}`} className="text-decoration-none">
         <div className="card caracter-card">
           <div className="card position-relative">
             <span className={`badge position-absolute top-0 start-0 m-2 p-2 ${getBadgeClass(props.status)}`}>{StatusCharacter[props.status]}</span>{" "}

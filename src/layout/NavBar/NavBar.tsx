@@ -26,7 +26,7 @@ const NavBar = () => {
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <NavLink className="nav-link" aria-current="page" to="/">
-                Home
+                Personagens
               </NavLink>
             </li>
           </ul>
