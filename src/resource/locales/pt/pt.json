@@ -189,7 +189,8 @@
   "pagination": {
     "Total number of pages and total characters found": "Número total de páginas e o total de personagens encontrado",
     "Page": "Página",
-    "of": "de"
+    "of": "de",
+    "Character": "Personagem"
   },
   "dimension": {
     "Dimension C-137": "Dimensão C-137",

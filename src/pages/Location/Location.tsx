@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import SelectFilter from "../../components/Filters/SelectFilter";
 import Translation from "../../components/Translation/Translation";

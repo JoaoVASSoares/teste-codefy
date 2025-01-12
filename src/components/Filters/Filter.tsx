@@ -46,7 +46,7 @@ const Filter = ({ onFilter }: FilterProps) => {
         <input
           className="form-control me-2 search-input"
           type="search"
-          placeholder={t("pagination.Total number of pages and total characters found")}
+          placeholder={t("system.Search for a character")}
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
           onKeyDown={handleKeyDown}
