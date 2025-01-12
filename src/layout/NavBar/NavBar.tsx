@@ -23,10 +23,15 @@ const NavBar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
+          <ul className="navbar-nav ms-auto gap-2">
             <li className="nav-item">
               <NavLink className="nav-link" aria-current="page" to="/">
                 Personagens
+              </NavLink>
+            </li>
+            <li className="nav-item ml-2">
+              <NavLink className="nav-link" aria-current="page" to="/episodes">
+                Episódios
               </NavLink>
             </li>
           </ul>
