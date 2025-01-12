@@ -7,7 +7,9 @@ Este é um projeto frontend desenvolvido em React com TypeScript, utilizando o V
 
 ## 🔗 Link da Aplicação Hospedada
 
-Acesse a aplicação online: [https://teste-codefy.onrender.com](https://teste-codefy.onrender.com)
+Acesse a aplicação online: [https://teste-codefy.onrender.com](https://teste-codefy.onrender.com)<br>
+
+⚠️ Nota: Por se tratar de uma hospedagem gratuita, o carregamento inicial da aplicação pode apresentar certa lentidão. Isso ocorre porque os servidores entram em modo "hibernação" quando não utilizados por um período, sendo necessários alguns segundos adicionais para reativação.
 
 ## 🚀 Tecnologias Utilizadas
 
