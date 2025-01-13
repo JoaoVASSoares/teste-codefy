@@ -11,7 +11,7 @@ type Props = {
 
 const Pagination = ({ pageNumber, totalItens, totalPages, setPageNumber }: Props) => {
   return (
-    <div className="d-flex align-items-center justify-content-between">
+    <div className="d-flex flex-column flex-md-row align-items-center justify-content-between">
       <div className="d-flex align-items-center gap-2">
         <IoMdInformationCircleOutline />
         {<Translation type="pagination" origin="Page" />} {pageNumber} {<Translation type="pagination" origin="of" />} {totalPages} - <span className="fw-bold">Total:</span>
