@@ -30,7 +30,7 @@ const NavBar = ({ isChecked, setIsChecked }: Props) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse " id="navbarNav">
-          <ul className="navbar-nav ms-auto gap-2">
+          <ul className="navbar-nav ms-auto gap-2 mt-3 mb-3 mt-md-0 mb-md-0">
             <li className="nav-item text-center text-md-start">
               <NavLink className="nav-link" aria-current="page" to="/">
                 <Tranlation type="system" origin="Characters" />
