@@ -29,26 +29,28 @@ const NavBar = ({ isChecked, setIsChecked }: Props) => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className="collapse navbar-collapse " id="navbarNav">
           <ul className="navbar-nav ms-auto gap-2">
-            <li className="nav-item">
+            <li className="nav-item text-center text-md-start">
               <NavLink className="nav-link" aria-current="page" to="/">
                 <Tranlation type="system" origin="Characters" />
               </NavLink>
             </li>
-            <li className="nav-item ml-2">
+            <li className="nav-item ml-2 text-center text-md-start">
               <NavLink className="nav-link" aria-current="page" to="/episodes">
                 <Tranlation type="system" origin="Episodes" />
               </NavLink>
             </li>
-            <li className="nav-item ml-2">
+            <li className="nav-item ml-2 text-center text-md-start">
               <NavLink className="nav-link" aria-current="page" to="/locations">
                 <Tranlation type="system" origin="Locations" />
               </NavLink>
             </li>
           </ul>
 
-          <FlagSwitch isChecked={isChecked} setIsChecked={setIsChecked} />
+          <div className="flag-switch-container">
+            <FlagSwitch isChecked={isChecked} setIsChecked={setIsChecked} />
+          </div>
         </div>
       </div>
     </nav>

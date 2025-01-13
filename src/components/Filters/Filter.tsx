@@ -33,7 +33,7 @@ const Filter = ({ onFilter }: FilterProps) => {
   };
 
   return (
-    <div className="row">
+    <div className="row mt-3 mb-3 mt-md-0 mb-md-0">
       <div className="col-md-5">
         <select className="form-select" value={status} onChange={e => setStatus(e.target.value)}>
           <option value="">{<Tranlation type="status" origin="All Status" />}</option>
@@ -42,7 +42,7 @@ const Filter = ({ onFilter }: FilterProps) => {
           <option value="unknown">{<Tranlation type="status" origin="Unknown" />}</option>
         </select>
       </div>
-      <div className="col-md-5">
+      <div className="col-md-5 mt-3 mb-3 mt-md-0 mb-md-0">
         <input
           className="form-control me-2 search-input"
           type="search"
@@ -52,7 +52,7 @@ const Filter = ({ onFilter }: FilterProps) => {
           onKeyDown={handleKeyDown}
         />
       </div>
-      <div className="col-md-2">
+      <div className="col-md-2 mt-3 mb-3 mt-md-0 mb-md-0">
         <div className="d-grid gap-2">
           <button className="btn btn-success btn-block" type="button" onClick={handleSearch}>
             {<Tranlation type="system" origin="Search" />}

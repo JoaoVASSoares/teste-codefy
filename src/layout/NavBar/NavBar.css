@@ -8,4 +8,17 @@
   background-color: #198754;
   border-radius: 5px;
   color: white;
+  padding: 5px;
+}
+
+.flag-switch-container {
+  display: flex;
+  justify-content: flex-end; 
+}
+
+@media (max-width: 768px) {
+  .flag-switch-container {
+    justify-content: center;
+    margin-top: 15px; 
+  }
 }
