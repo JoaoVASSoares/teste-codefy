@@ -8,7 +8,7 @@
   background-color: #198754;
   border-radius: 5px;
   color: white;
-  padding: 5px;
+  padding: 10px;
 }
 
 .flag-switch-container {
@@ -16,7 +16,7 @@
   justify-content: flex-end; 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .flag-switch-container {
     justify-content: center;
     margin-top: 15px; 

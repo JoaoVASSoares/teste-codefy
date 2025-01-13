@@ -34,7 +34,7 @@ const Location = () => {
       }
 
       setResults(result);
-      console.log(result);
+
       const characterData = await Promise.all(
         result.residents.map(async (url: string) => {
           const response = await fetch(url);

@@ -27,10 +27,6 @@ const Characters = () => {
     setErro(false);
 
     try {
-      if (query || status) {
-        setPageNumber(1);
-      }
-
       const response = await fetch(`${defaultCharactersURLAPI}/?page=${pageNumber}${query ? `&name=${query}` : ""}${status ? `&status=${status}` : ""}`);
 
       if (!response.ok) {
@@ -56,6 +52,10 @@ const Characters = () => {
   useEffect(() => {
     fetchData({ pageNumber, status, query });
   }, [pageNumber, status, query]);
+
+  useEffect(() => {
+    setPageNumber(1);
+  }, [status, query]);
 
   return (
     <>
