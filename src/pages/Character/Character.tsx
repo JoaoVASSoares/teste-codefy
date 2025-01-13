@@ -68,7 +68,7 @@ const Character = () => {
               <div className="col-md-12">
                 <div className="card-body">
                   <h5 className="card-title">{character?.name}</h5>
-                  <p className="card-text">
+                  <div className="card-text">
                     <div>
                       <span className="fw-bold">
                         <Tranlation type="genders" origin={"Gender"} />
@@ -90,7 +90,7 @@ const Character = () => {
                       </span>
                       {character?.location ? <Tranlation type="origins" origin={character?.location.name} /> : ""}
                     </div>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>

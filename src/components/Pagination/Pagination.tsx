@@ -1,6 +1,7 @@
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import ReactPaginate from "react-paginate";
 import Translation from "../Translation/Translation";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 type Props = {
   pageNumber: number;
@@ -14,14 +15,14 @@ const Pagination = ({ pageNumber, totalItens, totalPages, setPageNumber }: Props
     <div className="d-flex flex-column flex-md-row align-items-center justify-content-between">
       <div className="d-flex align-items-center gap-2">
         <IoMdInformationCircleOutline />
-        {<Translation type="pagination" origin="Page" />} {pageNumber} {<Translation type="pagination" origin="of" />} {totalPages} - <span className="fw-bold">Total:</span>
+        {<Translation type="pagination" origin="Page" />} {pageNumber} {<Translation type="pagination" origin="of" />} {totalPages} <span className="fw-bold">Total:</span>
         {totalItens}&nbsp;
         {<Translation type="pagination" origin="Character" />}
       </div>
       <ReactPaginate
         className="pagination mt-2"
-        previousLabel="Anterior"
-        nextLabel="Próximo"
+        previousLabel={<FaArrowLeft />}
+        nextLabel={<FaArrowRight />}
         nextLinkClassName="text-white text-decoration-none"
         previousLinkClassName="text-white text-decoration-none"
         previousClassName="btn btn-primary"

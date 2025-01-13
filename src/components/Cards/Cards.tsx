@@ -24,7 +24,7 @@ const Card = ({ id, imageURL, status, name, gender, origin }: Props) => {
           </div>
           <div className="card-body">
             <h5 className="card-title">{name}</h5>
-            <p className="card-text">
+            <div className="card-text">
               <div>
                 <span className="fw-bold">{<Tranlation type="genders" origin={"Gender"} />}: </span>
                 {<Tranlation type="genders" origin={gender} />}
@@ -33,7 +33,7 @@ const Card = ({ id, imageURL, status, name, gender, origin }: Props) => {
                 <span className="fw-bold">{<Tranlation type="origins" origin="Origin" />} : </span>
                 {<Tranlation type="origins" origin={origin} />}
               </div>
-            </p>
+            </div>
           </div>
         </div>
       </Link>

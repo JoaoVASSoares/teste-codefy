@@ -12,7 +12,7 @@ const SelectFilter = ({ name, changeID, total, listTitle }: Props) => {
         <option value="1">{listTitle}</option>
         {[...Array(total).keys()].map(x => {
           return (
-            <option value={x + 1}>
+            <option key={x} value={x + 1}>
               {name} - {x + 1}
             </option>
           );
